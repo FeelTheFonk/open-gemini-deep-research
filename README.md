@@ -1,271 +1,229 @@
+</thinking>
+
 <div align="center">
 
-# <span style="display:inline-block;vertical-align:middle"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></span> GEMINI DEEP RESEARCH
+# GEMINI DEEP RESEARCH
 
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge&color=3498db" />
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.8--3.12-blue?style=for-the-badge&logo=python&logoColor=white&color=2980b9" />
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python&logoColor=white&color=2980b9" />
   <img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge&color=f1c40f" />
 </p>
 
 <h3><em>L'exploration intelligente à un autre niveau</em></h3>
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Rocket.png" alt="Rocket" width="25"/> Fonctionnalités
+<p>
+<kbd><strong>R</strong>echerche</kbd> • 
+<kbd><strong>E</strong>xploration</kbd> • 
+<kbd><strong>S</strong>ynthèse</kbd> • 
+<kbd><strong>E</strong>xpertise</kbd> • 
+<kbd><strong>A</strong>nalyse</kbd> • 
+<kbd><strong>R</strong>apport</kbd> • 
+<kbd><strong>C</strong>onnaissance</kbd> • 
+<kbd><strong>H</strong>olisme</kbd>
+</p>
+
+<hr style="height:3px;border:none;color:#333;background-color:#333;margin:30px 0">
+
+</div>
+
+<details close>
+<summary><h2>PRINCIPALES FONCTIONNALITÉS</h2></summary>
 
 <table>
   <tr>
-    <td>
-      <ul>
-        <li>🔍 Recherche profonde automatisée à largeur et profondeur ajustables</li>
-        <li>🤔 Génération intelligente de questions de suivi</li>
-        <li>⚡ Traitement concurrent de multiples requêtes</li>
-        <li>📝 Génération de rapports détaillés avec citations</li>
-      </ul>
-    </td>
-    <td>
-      <ul>
-        <li>🚀 Trois modes de recherche: rapide, équilibré et exhaustif</li>
-        <li>📊 Suivi de progression avec visualisation d'arborescence</li>
-        <li>🔗 Gestion de sources avec citations en ligne</li>
-        <li>🌐 Interface visuelle riche et intuitive</li>
-      </ul>
-    </td>
+    <td align="center"><img src="https://img.shields.io/badge/-recherche_adaptative-informational?style=flat-square&color=3498db"/></td>
+    <td><strong>Recherche adaptative</strong><br>Largeur et profondeur ajustables pour une analyse personnalisée</td>
+    <td align="center"><img src="https://img.shields.io/badge/-questions_contextuelles-informational?style=flat-square&color=9b59b6"/></td>
+    <td><strong>Questions contextuelles</strong><br>Génération intelligente de questions de suivi pour affiner la recherche</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://img.shields.io/badge/-exploration_arborescente-informational?style=flat-square&color=2ecc71"/></td>
+    <td><strong>Exploration arborescente</strong><br>Traitement concurrent de requêtes avec relations parent-enfant</td>
+    <td align="center"><img src="https://img.shields.io/badge/-synthèse_narrative-informational?style=flat-square&color=e74c3c"/></td>
+    <td><strong>Synthèse narrative</strong><br>Rapports détaillés avec citations, analogies et perspectives multiples</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://img.shields.io/badge/-trois_modes-informational?style=flat-square&color=f39c12"/></td>
+    <td><strong>Trois modes d'exploration</strong><br>Rapide, équilibré ou exhaustif selon vos besoins</td>
+    <td align="center"><img src="https://img.shields.io/badge/-interface_riche-informational?style=flat-square&color=1abc9c"/></td>
+    <td><strong>Interface visuelle riche</strong><br>Visualisation en temps réel de la progression et des connexions</td>
   </tr>
 </table>
 
+</details>
 
+<details close>
+<summary><h2>INSTALLATION</h2></summary>
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Gear.png" alt="Gear" width="25"/> Prérequis
+<table>
+  <tr>
+    <th align="center" width="50%">Prérequis</th>
+    <th align="center" width="50%">Installation rapide</th>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>Python 3.12</li>
+        <li>Clé API Google Gemini</li>
+        <li>Docker (facultatif)</li>
+        <li>VS Code avec Dev Containers (facultatif)</li>
+      </ul>
+    </td>
+    <td>
+      
+```bash
+git clone https://github.com/owner/deep_research.git
+cd deep_research
+python -m venv venv
+source venv/bin/activate  # ou venv\Scripts\activate sous Windows
+pip install -r requirements.txt
+```
 
-- Python 3.8+
-- Clé API Google Gemini
-- Docker (si utilisation du conteneur de développement)
-- VS Code avec l'extension Dev Containers (si utilisation du conteneur)
-
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Package.png" alt="Package" width="25"/> Installation
+Créez un fichier `.env` avec votre clé API:
+```
+GEMINI_KEY=your_api_key_here
+```
+      
+  </tr>
+</table>
 
 <details>
-<summary><b>Option 1: Utilisation du conteneur de développement (Recommandé)</b></summary>
+<summary>Option alternative: Utilisation du conteneur de développement</summary>
 <br>
 
 1. Ouvrez le projet dans VS Code
-2. Quand vous y êtes invité, cliquez sur "Rouvrir dans un conteneur" ou exécutez la commande "Dev Containers: Reopen in Container"
-3. Créez un fichier `.env` dans le répertoire racine et ajoutez votre clé API Gemini:
-   ```
-   GEMINI_KEY=your_api_key_here
-   ```
+2. Lorsque vous y êtes invité, cliquez sur "Rouvrir dans un conteneur"
+3. Créez un fichier `.env` dans le répertoire racine avec votre clé API Gemini
+
 </details>
 
-<details>
-<summary><b>Option 2: Installation locale</b></summary>
-<br>
-
-1. Clonez le dépôt:
-   ```bash
-   git clone https://github.com/FeelTheFonk/open-gemini-deep-research
-   cd deep_research
-   ```
-
-2. Créez et activez un environnement virtuel (recommandé):
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Sur Windows: venv\Scripts\activate
-   ```
-
-3. Installez les dépendances:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Créez un fichier `.env` dans le répertoire racine et ajoutez votre clé API Gemini:
-   ```
-   GEMINI_KEY=your_api_key_here
-   ```
 </details>
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Joystick.png" alt="Joystick" width="25"/> Utilisation
-
-```bash
-python main.py "votre requête de recherche ici"
-```
-
-### Arguments optionnels
+<details close>
+<summary><h2>UTILISATION</h2></summary>
 
 <table>
-  <tr>
-    <th>Argument</th>
-    <th>Description</th>
-    <th>Valeurs</th>
-    <th>Défaut</th>
-  </tr>
-  <tr>
-    <td><code>--mode</code></td>
-    <td>Mode de recherche</td>
-    <td>fast, balanced, comprehensive</td>
-    <td>balanced</td>
-  </tr>
-  <tr>
-    <td><code>--num-queries</code></td>
-    <td>Nombre de requêtes à générer</td>
-    <td>entier</td>
-    <td>3</td>
-  </tr>
-  <tr>
-    <td><code>--learnings</code></td>
-    <td>Liste d'apprentissages précédents</td>
-    <td>liste de chaînes</td>
-    <td>[]</td>
-  </tr>
-</table>
 
-#### Exemple:
+```bash
+python main.py "votre requête de recherche"
+```
+
+### Exemple
 
 ```bash
 python main.py "Impact de l'intelligence artificielle sur la santé" --mode comprehensive --num-queries 5
 ```
 
-### Interface graphique
+Arguments optionnels:
+```bash
+--mode [fast/balanced/comprehensive]
+--num-queries [entier]
+--learnings [liste d'apprentissages]
+```
 
-Pour utiliser l'interface utilisateur Rich:
+---
+
+<p align="center"><i>Interface interactive avec visualisation en temps réel</i></p>
 
 ```bash
 python ui.py
 ```
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Clipboard.png" alt="Clipboard" width="25"/> Workflow
+</table>
 
-Le script va:
+<div align="center">
+  <img src="https://img.shields.io/badge/résultat-3000%2B%20mots%20avec%20citations-success?style=for-the-badge&color=2ecc71" />
+</div>
 
-1. Analyser votre requête pour déterminer les paramètres optimaux
-2. Poser des questions de suivi pour clarification
-3. Mener une recherche multi-couche
-4. Générer un rapport complet sauvegardé en tant que `final_report.md`
-5. Afficher des mises à jour de progression tout au long du processus
-6. Générer une visualisation interactive des connaissances (optionnel)
+</details>
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Card%20File%20Box.png" alt="Structure" width="25"/> Structure du projet
-
-```
-deep_research/
-├── .github/                   # Configuration GitHub et workflows
-├── src/
-│   ├── __init__.py
-│   └── deep_research.py       # Moteur de recherche principal
-├── .env                       # Variables d'environnement (non suivi)
-├── .gitignore
-├── main.py                    # Point d'entrée CLI
-├── ui.py                      # Interface utilisateur Rich
-├── README.md
-└── requirements.txt           # Dépendances
-```
-
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Light%20Bulb.png" alt="Light Bulb" width="25"/> Fonctionnement
-
-### Modes de recherche
+<details close>
+<summary><h2>ARCHITECTURE</h2></summary>
 
 <table>
   <tr>
-    <th align="center">⚡ Rapide</th>
-    <th align="center">⚖️ Équilibré</th>
-    <th align="center">🔍 Exhaustif</th>
+    <th colspan="2">Modes de recherche</th>
+    <th>Structure du projet</th>
   </tr>
   <tr>
-    <td>
-      • Recherche de surface rapide<br/>
-      • Max 3 requêtes concurrentes<br/>
-      • Pas de plongée récursive<br/>
-      • 2-3 questions par requête<br/>
-      • ~1-3 minutes
+    <td width="30%">
+      <h4 align="center">Mode rapide [FAST]</h4>
+      <ul>
+        <li>Recherche de surface</li>
+        <li>3 requêtes max</li>
+        <li>2-3 questions par requête</li>
+        <li>Temps: ~1-3 minutes</li>
+      </ul>
     </td>
-    <td>
-      • Profondeur et largeur modérées<br/>
-      • Max 7 requêtes concurrentes<br/>
-      • Pas de plongée récursive<br/>
-      • 3-5 questions par requête<br/>
-      • ~3-6 minutes
+    <td width="30%">
+      <h4 align="center">Mode exhaustif [COMPREHENSIVE]</h4>
+      <ul>
+        <li>Exploration récursive</li>
+        <li>5 requêtes + sous-requêtes</li>
+        <li>5-7 questions par requête</li>
+        <li>Temps: ~5-12 minutes</li>
+      </ul>
     </td>
-    <td>
-      • Recherche détaillée exhaustive<br/>
-      • 5 requêtes + plongée récursive<br/>
-      • Exploration de relations tertiaires<br/>
-      • 5-7 questions avec exploration récursive<br/>
-      • ~5-12 minutes
-    </td>
+    <td width="40%">
+
+```
+deep_research/
+├── .github/              # CI/CD & Workflows
+├── src/
+│   ├── __init__.py
+│   └── deep_research.py  # Moteur principal
+├── .env                  # Clés API (non suivi)
+├── .gitignore
+├── main.py               # CLI
+├── ui.py                 # Interface Rich
+├── README.md
+└── requirements.txt      # Dépendances
+```
   </tr>
 </table>
 
 ### Processus de recherche
 
-<ol>
-  <li><strong>Analyse de requête</strong>
-    <ul>
-      <li>Évalue la complexité et l'étendue</li>
-      <li>Définit la largeur (1-10) et profondeur (1-5)</li>
-      <li>Ajuste les paramètres selon le mode</li>
-    </ul>
-  </li>
-  <li><strong>Génération de requêtes</strong>
-    <ul>
-      <li>Crée des requêtes uniques non-redondantes</li>
-      <li>Vérifie la similarité sémantique</li>
-      <li>Maintient l'historique pour éviter les doublons</li>
-    </ul>
-  </li>
-  <li><strong>Construction d'arborescence</strong>
-    <ul>
-      <li>Structure en arbre pour suivre la progression</li>
-      <li>Identifiants UUID uniques</li>
-      <li>Relations parent-enfant entre requêtes</li>
-      <li>Visualisation détaillée via JSON</li>
-    </ul>
-  </li>
-  <li><strong>Recherche approfondie</strong> (Mode exhaustif)
-    <ul>
-      <li>Stratégie de recherche récursive</li>
-      <li>Réduction de largeur aux niveaux profonds</li>
-      <li>Déduplication des URLs visitées</li>
-    </ul>
-  </li>
-  <li><strong>Génération de rapport</strong>
-    <ul>
-      <li>Synthèse narrative cohérente</li>
-      <li>Rapport détaillé d'au moins 3000 mots</li>
-      <li>Citations en ligne et gestion des sources</li>
-      <li>Éléments créatifs (scénarios, analogies)</li>
-    </ul>
-  </li>
-</ol>
+<div align="center">
 
-### Implémentation technique
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│ ANALYSE     │────>│ QUESTIONS   │────>│ RECHERCHE   │
+│ REQUÊTE     │     │ DE SUIVI    │     │ CONCURRENTE │
+└─────────────┘     └─────────────┘     └──────┬──────┘
+                                               │
+┌─────────────┐     ┌─────────────┐     ┌──────┴──────┐
+│ RAPPORT     │<────│ SYNTHÈSE    │<────│ EXTRACTION  │
+│ FINAL       │     │ CONNAISSANCE│     │ DONNÉES     │
+└─────────────┘     └─────────────┘     └─────────────┘
+```
 
-L'application utilise l'IA Gemini de Google pour:
-- Analyse et génération de requêtes
-- Traitement et synthèse de contenu
-- Vérification de similarité sémantique
-- Génération de rapports
+<p>Flux de recherche multi-couche avec gestion relationnelle des connaissances</p>
 
-L'arborescence de recherche est implémentée via la classe `ResearchProgress` qui suit:
-- Relations entre requêtes (parent-enfant)
-- État de complétion des requêtes
-- Apprentissages par requête
-- Ordre des requêtes
-- IDs uniques pour chaque requête
+</div>
 
-Exemple de structure d'arbre:
+</details>
+
+<details close>
+<summary><h2>STRUCTURE DE DONNÉES</h2></summary>
+
+Le cœur du système repose sur une structure d'arbre de recherche sophistiquée :
+
 ```json
 {
   "query": "requête racine",
   "id": "uuid-1",
   "status": "completed",
   "depth": 2,
-  "learnings": ["apprentissage 1", "apprentissage 2"],
+  "learnings": ["observation 1", "observation 2"],
   "sub_queries": [
     {
       "query": "sous-requête 1",
       "id": "uuid-2",
       "status": "completed",
       "depth": 1,
-      "learnings": ["apprentissage 3"],
+      "learnings": ["observation 3"],
       "sub_queries": [],
       "parent_query": "requête racine"
     }
@@ -275,5 +233,32 @@ Exemple de structure d'arbre:
 ```
 
 <div align="center">
-<p>Explorez les idées. Connectez les connaissances. Découvrez.</p>
+<p>Suivi de progression en temps réel via visualisation arborescente</p>
+</div>
+
+</details>
+
+<details>
+<summary><h2>CONTRIBUTION</h2></summary>
+
+Les contributions sont bienvenues ! Consultez nos issues ouvertes ou proposez des améliorations.
+
+1. Fork le projet
+2. Créez votre branche de fonctionnalité (`git checkout -b feature/amazing-feature`)
+3. Committez vos changements (`git commit -m 'Add some amazing feature'`)
+4. Poussez vers la branche (`git push origin feature/amazing-feature`)
+5. Ouvrez une Pull Request
+
+</details>
+
+<br>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Explorez-l'inconnu-blueviolet?style=for-the-badge&color=8e44ad" />
+  <img src="https://img.shields.io/badge/Connectez-les_connaissances-blueviolet?style=for-the-badge&color=8e44ad" />
+  <img src="https://img.shields.io/badge/Découvrez-la_profondeur-blueviolet?style=for-the-badge&color=8e44ad" />
+
+<br><br>
+
+<em>Créé avec passion pour l'exploration intelligente</em>
 </div>
