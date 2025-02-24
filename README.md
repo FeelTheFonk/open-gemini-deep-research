@@ -1,15 +1,14 @@
-# <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Magnifying%20Glass%20Tilted%20Right.png" alt="Magnifying Glass" width="35" /> Open Gemini Deep Research
-
 <div align="center">
-  <p>
-    <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000&style=flat-square" />
-    <img alt="Python" src="https://img.shields.io/badge/Python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue?style=flat-square&logo=python" />
-    <img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" />
-  </p>
 
-  <h3>Un assistant de recherche open-source surpuissant propulsé par l'IA Gemini de Google</h3>
-  <p>Exploration multi-couche approfondie sur n'importe quel sujet</p>
-</div>
+# <span style="display:inline-block;vertical-align:middle"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></span> GEMINI DEEP RESEARCH
+
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge&color=3498db" />
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.8--3.12-blue?style=for-the-badge&logo=python&logoColor=white&color=2980b9" />
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge&color=f1c40f" />
+</p>
+
+<h3><em>L'exploration intelligente à un autre niveau</em></h3>
 
 ## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Rocket.png" alt="Rocket" width="25"/> Fonctionnalités
 
