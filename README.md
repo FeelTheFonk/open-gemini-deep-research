@@ -1,5 +1,3 @@
-</thinking>
-
 <div align="center">
 
 # GEMINI DEEP RESEARCH
@@ -173,6 +171,12 @@ deep_research/
 ├── src/
 │   ├── __init__.py
 │   └── deep_research.py  # Moteur principal
+├── ui/
+│   ├── __init__.py
+│   ├── ui_core.py        # Constantes et utilitaires
+│   ├── ui_components.py  # Composants d'interface
+│   ├── ui_visualizers.py # Visualisations avancées
+│   └── ui_workflow.py    # Workflow principal
 ├── .env                  # Clés API (non suivi)
 ├── .gitignore
 ├── main.py               # CLI
@@ -234,6 +238,68 @@ Le cœur du système repose sur une structure d'arbre de recherche sophistiquée
 
 <div align="center">
 <p>Suivi de progression en temps réel via visualisation arborescente</p>
+</div>
+
+</details>
+
+<details close>
+<summary><h2>MODULES DE L'INTERFACE</h2></summary>
+
+L'interface utilisateur est maintenant modulaire, organisée en plusieurs composants spécialisés :
+
+### Module `ui_core.py`
+
+- Configuration et constantes de l'application
+- Utilitaires fondamentaux et formatage
+- Gestion centralisée des traductions
+
+### Module `ui_components.py`
+
+- Composants visuels réutilisables
+- Panneaux, tableaux de bord et arbres
+- Mise en page et éléments d'interface
+
+### Module `ui_visualizers.py`
+
+- Exportation des rapports (HTML, MD)
+- Génération de graphes de connaissances
+- Visualisations avancées des données
+
+### Module `ui_workflow.py`
+
+- Processus principal de recherche
+- Gestion du cycle de vie des requêtes
+- Traitement et génération des rapports
+
+<div align="center">
+<p>Architecture modulaire pour une maintenance et une évolutivité optimales</p>
+</div>
+
+</details>
+
+<details close>
+<summary><h2>VISUALISATIONS</h2></summary>
+
+Le système offre plusieurs types de visualisations pour explorer les résultats :
+
+### Arbre de recherche
+
+Visualisation en temps réel de la structure des requêtes et sous-requêtes avec statuts codés par couleur.
+
+### Graphe de connaissances
+
+Représentation interactive en D3.js des relations entre requêtes, connaissances acquises et sources.
+
+### Rapports narratifs
+
+Génération automatique de rapports structurés avec analogies, citations et perspectives multiples.
+
+### Tableaux de bord de progression
+
+Suivi détaillé de l'avancement avec statistiques sur les requêtes, sources et connaissances.
+
+<div align="center">
+<p>Exploration visuelle multiniveau pour une compréhension approfondie</p>
 </div>
 
 </details>
