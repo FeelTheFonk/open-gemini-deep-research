@@ -1,10 +1,12 @@
 """
 UI Components - Composants d'interface réutilisables pour l'application
+Implémente le pattern de conception Component pour une interface modulaire
 """
 
 import asyncio
 import datetime
 import time
+from typing import Dict, Any, List, Optional, Callable
 
 from rich.console import Group
 from rich.panel import Panel
@@ -16,9 +18,33 @@ from rich.text import Text
 from rich.markdown import Markdown
 from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, TimeElapsedColumn, TaskProgressColumn
 
-from .ui_core import THEME, TRANSLATION, console, count_nodes, count_knowledge_points, extract_unique_sources, format_elapsed_time
+from .ui_core import (
+    THEME, TRANSLATION, console, state_manager,
+    count_nodes, count_knowledge_points, extract_unique_sources, format_elapsed_time
+)
 
 
+class ComponentRegistry:
+    """Registre centralisé des composants UI"""
+    _components = {}
+    
+    @classmethod
+    def register(cls, name: str):
+        """Enregistre un composant pour utilisation ultérieure"""
+        def decorator(component_factory: Callable):
+            cls._components[name] = component_factory
+            return component_factory
+        return decorator
+    
+    @classmethod
+    def get(cls, name: str, **kwargs) -> Any:
+        """Récupère une instance du composant par son nom"""
+        if name in cls._components:
+            return cls._components[name](**kwargs)
+        raise ValueError(f"Composant non enregistré: {name}")
+
+
+@ComponentRegistry.register("header")
 def header_panel():
     """Crée un panneau d'en-tête stylisé"""
     # Version et date
@@ -48,6 +74,7 @@ def header_panel():
     )
 
 
+@ComponentRegistry.register("help")
 def help_panel():
     """Crée un panneau d'aide contextuelle"""
     # Infos sur les modes de recherche
@@ -60,9 +87,7 @@ def help_panel():
     modes_table.add_row("🔍", TRANSLATION['help_mode_comprehensive'])
     
     # Assembler le contenu d'aide
-    help_content = Group(
-        modes_table
-    )
+    help_content = Group(modes_table)
     
     return Panel(
         help_content,
@@ -73,11 +98,12 @@ def help_panel():
     )
 
 
-def build_tree(node):
-    """Construit un arbre de recherche visuel avec couleurs thématiques"""
+def build_tree(node: Optional[Dict[str, Any]]) -> Tree:
+    """Construit un arbre de recherche visuel avec couleurs thématiques (optimisé)"""
     if not node:
         return Tree(f"[{THEME['warning_color']}]{TRANSLATION['no_tree']}[/{THEME['warning_color']}]")
-        
+    
+    # Utiliser une approche itérative au lieu de récursive
     query = node.get('query', TRANSLATION['loading'])
     status = node.get('status', 'waiting')
     
@@ -90,10 +116,15 @@ def build_tree(node):
         status_color = THEME['status_waiting']
     
     # Créer le nœud racine
-    tree = Tree(f"[bold {THEME['query_color']}]{query}[/] - [{status_color}]{status}[/]")
+    root_tree = Tree(f"[bold {THEME['query_color']}]{query}[/] - [{status_color}]{status}[/]")
     
-    def add_nodes(n, parent):
-        for child in n.get("sub_queries", []):
+    # Utiliser une file pour l'approche itérative
+    queue = [(node, root_tree)]
+    
+    while queue:
+        current_node, parent_tree = queue.pop(0)
+        
+        for child in current_node.get("sub_queries", []):
             child_query = child.get('query', TRANSLATION['loading'])
             child_status = child.get('status', 'waiting')
             
@@ -106,17 +137,16 @@ def build_tree(node):
                 child_status_color = THEME['status_waiting']
             
             # Ajouter le nœud enfant avec formatage
-            branch = parent.add(f"[{THEME['info_color']}]{child_query}[/] - [{child_status_color}]{child_status}[/]")
+            branch = parent_tree.add(f"[{THEME['info_color']}]{child_query}[/] - [{child_status_color}]{child_status}[/]")
             
-            # Ajouter récursivement les enfants de ce nœud
-            add_nodes(child, branch)
+            # Ajouter cet enfant à la file pour traitement ultérieur
+            queue.append((child, branch))
     
-    # Ajouter tous les nœuds enfants
-    add_nodes(node, tree)
-    return tree
+    return root_tree
 
 
-def display_tree(tree_data):
+@ComponentRegistry.register("tree")
+def display_tree(tree_data: Optional[Dict[str, Any]]) -> Panel:
     """Affiche l'arbre de recherche dans un panneau stylisé"""
     if not tree_data:
         return Panel(
@@ -136,8 +166,14 @@ def display_tree(tree_data):
     )
 
 
-def display_dashboard(tree_data, visited_urls, start_time):
+@ComponentRegistry.register("dashboard")
+def display_dashboard(tree_data: Optional[Dict[str, Any]] = None, visited_urls: Optional[Dict[str, Any]] = None, start_time: Optional[float] = None) -> Panel:
     """Affiche un tableau de bord complet avec statistiques"""
+    # Utiliser les données du gestionnaire d'état si non fournies
+    tree_data = tree_data or state_manager.tree_data
+    visited_urls = visited_urls or state_manager.visited_urls
+    start_time = start_time or state_manager.start_time
+    
     if not tree_data:
         return Panel(
             f"[{THEME['warning_color']}]{TRANSLATION['no_tree']}[/{THEME['warning_color']}]",
@@ -158,7 +194,8 @@ def display_dashboard(tree_data, visited_urls, start_time):
     stats_table.add_column("Value", style="white")
     
     stats_table.add_row(TRANSLATION['total_queries'], str(total))
-    stats_table.add_row(TRANSLATION['completed_queries'], f"{completed} ({completed * 100 // total if total > 0 else 0}%)")
+    completion_percentage = completed * 100 // total if total > 0 else 0
+    stats_table.add_row(TRANSLATION['completed_queries'], f"{completed} ({completion_percentage}%)")
     stats_table.add_row(TRANSLATION['research_depth'], str(current_depth))
     stats_table.add_row(TRANSLATION['sources_found'], str(sources_count))
     stats_table.add_row(TRANSLATION['knowledge_points'], str(knowledge_points))
@@ -167,12 +204,13 @@ def display_dashboard(tree_data, visited_urls, start_time):
     # Calcul du ratio de progression
     progress_ratio = completed / total if total > 0 else 0
     
-    # Barre de progression visuelle
-    progress_bar = "█" * int(progress_ratio * 20) + "░" * (20 - int(progress_ratio * 20))
+    # Barre de progression visuelle avec blocs unicode
+    progress_blocks = int(progress_ratio * 20)
+    progress_bar = "█" * progress_blocks + "░" * (20 - progress_blocks)
     progress_text = Text(f"{progress_bar} {progress_ratio * 100:.1f}%")
     
     # État de la recherche
-    if completed == total:
+    if completed == total and total > 0:
         status = Text(f"✓ {TRANSLATION['search_status']}: ", style=THEME['success_color'])
         status.append("COMPLÉTÉ", style=f"bold {THEME['success_color']}")
     else:
@@ -196,6 +234,7 @@ def display_dashboard(tree_data, visited_urls, start_time):
     )
 
 
+@ComponentRegistry.register("progress_bar")
 def create_research_progress_bar():
     """Crée une barre de progression avancée pour la recherche"""
     return Progress(
@@ -209,6 +248,7 @@ def create_research_progress_bar():
     )
 
 
+@ComponentRegistry.register("main_layout")
 def create_main_layout():
     """Crée la mise en page principale de l'application"""
     layout = Layout()
@@ -240,7 +280,8 @@ def create_main_layout():
     return layout
 
 
-def follow_up_notice(mode):
+@ComponentRegistry.register("follow_up_notice")
+def follow_up_notice(mode: str):
     """Affiche une notification sur les questions de suivi générées par Gemini"""
     if mode == "comprehensive":
         notice = Text(TRANSLATION["follow_up_notice"], style=f"bold {THEME['warning_color']}")
@@ -251,10 +292,11 @@ def follow_up_notice(mode):
         ))
 
 
+@ComponentRegistry.register("welcome_screen")
 def display_welcome_screen():
     """Affiche l'écran de bienvenue avec animation"""
     console.clear()
-    console.print(header_panel())
+    console.print(ComponentRegistry.get("header"))
     console.print(Panel(
         Align.center(Text(
             "\n🔍 Prêt à explorer l'univers de l'information\n\n"
@@ -270,7 +312,8 @@ def display_welcome_screen():
     ))
 
 
-def display_error_panel(error_message, error_details=None):
+@ComponentRegistry.register("error_panel")
+def display_error_panel(error_message: str, error_details: Optional[str] = None):
     """Affiche un panneau d'erreur avec détails"""
     error_content = Text(error_message, style=f"bold {THEME['error_color']}")
     
@@ -289,15 +332,42 @@ def display_error_panel(error_message, error_details=None):
     )
 
 
-async def animated_loading(message, duration=3):
-    """Affiche un message de chargement animé"""
-    spinner = "|/-\\"
-    end_time = time.time() + duration
-    i = 0
+class LoadingAnimation:
+    """Classe pour gérer les animations de chargement avec contrôle avancé"""
+    def __init__(self, message: str, spinner_chars: str = "|/-\\"):
+        self.message = message
+        self.spinner_chars = spinner_chars
+        self.is_running = False
+        self.task = None
     
-    while time.time() < end_time:
-        console.print(f"{spinner[i % len(spinner)]} {message}", end="\r")
-        i += 1
-        await asyncio.sleep(0.1)
+    async def _animate(self):
+        """Animation interne de chargement"""
+        i = 0
+        while self.is_running:
+            console.print(f"{self.spinner_chars[i % len(self.spinner_chars)]} {self.message}", end="\r")
+            i += 1
+            await asyncio.sleep(0.1)
     
-    console.print(" " * (len(message) + 2), end="\r")  # Effacer la ligne
+    async def start(self, duration: Optional[float] = None):
+        """Démarre l'animation avec durée optionnelle"""
+        self.is_running = True
+        self.task = asyncio.create_task(self._animate())
+        
+        if duration is not None:
+            await asyncio.sleep(duration)
+            await self.stop()
+    
+    async def stop(self):
+        """Arrête proprement l'animation"""
+        if self.is_running:
+            self.is_running = False
+            if self.task:
+                await asyncio.wait_for(self.task, timeout=0.5)
+            console.print(" " * (len(self.message) + 2), end="\r")  # Effacer la ligne
+
+
+@ComponentRegistry.register("loading_animation")
+async def animated_loading(message: str, duration: float = 3):
+    """Fonction wrapper pour l'animation de chargement"""
+    animation = LoadingAnimation(message)
+    await animation.start(duration)
